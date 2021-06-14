@@ -1,0 +1,444 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Đăng ký thông tin tiêm chủng · VNVC</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v4.6.3/css/font-awesome-css.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/580a8755a6.js" crossorigin="anonymous"></script>
+
+    <!-- Favicons -->
+<!--     <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon.ico"> -->
+    <link href="https://vnvc.vn/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <meta name="theme-color" content="#7952b3">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      .show_hide_password:hover {
+        color:#333
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    
+    <!-- Custom styles for this template -->
+    <link href="form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light" cz-shortcut-listen="true">
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="https://vnvc.vn/wp-content/uploads/2021/01/logo-02.png" alt="" width="140" height="57">
+      <h2>Đăng ký tiêm chủng Vaccine COVID-19</h2>
+      <p class="lead">Hệ thống đăng ký tiêm chủng trực tuyến VNVC (thuộc Công ty Cổ phần Vacxin Việt Nam).</p>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Hóa đơn</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Comirnaty</h6>
+              <small class="text-muted">Vắc xin COVID-19</small>
+            </div>
+            <span class="text-muted">$12</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Sputnik V</h6>
+              <small class="text-muted">Vắc xin COVID-19</small>
+            </div>
+            <span class="text-muted">$8</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0">Vaxzevria, Covishield</h6>
+              <small class="text-muted">Vắc xin COVID-19</small>
+            </div>
+            <span class="text-muted">$5</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Tổng cộng (VND)</span>
+            <strong id="total">$20</strong>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Thông tin khách hàng</h4>
+        <!-- <form class="needs-validation" novalidate=""> -->
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Họ và tên người đăng ký</label>
+              <input type="text" class="form-control" id="name" placeholder="" value="" required="">
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Số điện thoại người đăng ký</label>
+              <input type="number" class="form-control" id="phone" placeholder="Nhập số số điện thoại" required="">
+            </div>
+
+            <div class="col-12">
+              <label for="username" class="form-label">Số CMND/CCCD người đăng ký</label>
+              <input type="number" class="form-control" id="cmnd" placeholder="Nhập số CMND/CCCD" required="">
+            </div>
+
+            <div class="col-12">
+              <label for="username" class="form-label">Ngày sinh người đăng ký</label>
+              <input type="date" class="form-control" id="birthday" placeholder="Nhập số CMND/CCCD" required="">
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Địa chỉ người đăng ký</label>
+              <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" required="">
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Email người đăng ký</label>
+              <input type="email" class="form-control" id="email" placeholder="Nhập email" required="">
+              <div class="invalid-feedback">
+                Please enter a valid email address for updates.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Mật khẩu</label>
+              <div class="input-group" id="show_hide_password_1">
+                <input class="form-control" type="password">
+                <span class="input-group-text">
+                  <a class="show_hide_password"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Xác nhận mật khẩu</label>
+              <div class="input-group" id="show_hide_password_2">
+                <input class="form-control" type="password">
+                <span class="input-group-text">
+                  <a class="show_hide_password"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                </span>
+              </div>
+            </div>
+
+            <script type="text/javascript">
+              $("#show_hide_password_1 a").on('click', function(event) {
+                event.preventDefault();
+                if($('#show_hide_password_1 input').attr("type") == "text"){
+                    $('#show_hide_password_1 input').attr('type', 'password');
+                    $('#show_hide_password_1 i').addClass( "fa-eye-slash" );
+                    $('#show_hide_password_1 i').removeClass( "fa-eye" );
+                }else if($('#show_hide_password_1 input').attr("type") == "password"){
+                    $('#show_hide_password_1 input').attr('type', 'text');
+                    $('#show_hide_password_1 i').removeClass( "fa-eye-slash" );
+                    $('#show_hide_password_1 i').addClass( "fa-eye" );
+                }
+              });
+              $("#show_hide_password_2 a").on('click', function(event) {
+                event.preventDefault();
+                if($('#show_hide_password_2 input').attr("type") == "text"){
+                    $('#show_hide_password_2 input').attr('type', 'password');
+                    $('#show_hide_password_2 i').addClass( "fa-eye-slash" );
+                    $('#show_hide_password_2 i').removeClass( "fa-eye" );
+                }else if($('#show_hide_password_2 input').attr("type") == "password"){
+                    $('#show_hide_password_2 input').attr('type', 'text');
+                    $('#show_hide_password_2 i').removeClass( "fa-eye-slash" );
+                    $('#show_hide_password_2 i').addClass( "fa-eye" );
+                }
+              });
+            </script>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Thông tin Vắc xin</h4>
+
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Vắc xin COVID-19: Comirnaty
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="row accordion-body">
+                  <div class="col-md-6">
+                    <p><strong>Tên thương mại: </strong>Comirnaty</p>
+                    <p><strong>Đồng nghĩa: </strong>BNT162b2</p>
+                    <p><strong>Quốc gia: </strong>Mỹ</p>
+                    <p><strong>Giá thành: </strong>1,530,000 VND/ mũi</p>
+                  </div>
+                  <div class="col-md-6">
+                    <p><strong>Hãng sản xuất: </strong>Pfizer, Inc. and BioNTech</p>
+                    <p><strong>Loại vắc-xin: </strong>mRNA</p>
+                    <p><strong>Số mũi tiêm: </strong>2 mũi, cách nhau 21 ngày</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Vắc xin COVID-19: Sputnik V
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="row accordion-body">
+                  <div class="col-md-6">
+                    <p><strong>Tên thương mại: </strong>Sputnik V</p>
+                    <p><strong>Đồng nghĩa: </strong>Gam-COVID-Va</p>
+                    <p><strong>Quốc gia: </strong>Nga</p>
+                    <p><strong>Giá thành: </strong>765,000 VND/ mũi</p>
+                  </div>
+                  <div class="col-md-6">
+                    <p><strong>Hãng sản xuất: </strong>Gamaleya Research Institute of Epidemiology and Microbiology</p>
+                    <p><strong>Loại vắc-xin: </strong>Viral vector</p>
+                    <p><strong>Số mũi tiêm: </strong>2 mũi, cách nhau 3 tháng</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  Vắc xin COVID-19: Vaxzevria, Covishield
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="row accordion-body">
+                  <div class="col-md-6">
+                    <p><strong>Tên thương mại: </strong>Vaxzevria, Covishield</p>
+                    <p><strong>Đồng nghĩa: </strong>AZD1222, ChAdOx1 nCoV-19, ChAdOx1-S, AstraZeneca, AstraZeneca COVID-19</p>
+                    <p><strong>Quốc gia: </strong>Anh</p>
+                    <p><strong>Giá thành: </strong>360,000 VND/ mũi</p>
+                  </div>
+                  <div class="col-md-6">
+                    <p><strong>Hãng sản xuất: </strong>Oxford–AstraZeneca</p>
+                    <p><strong>Loại vắc-xin: </strong>Viral vector</p>
+                    <p><strong>Số mũi tiêm: </strong>2 mũi, cách nhau 21 ngày</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Thông tin tiêm chủng</h4>
+
+          <div id="danh-sach-tiem-chung"></div>
+
+          <button class="w-100 btn btn-primary" onclick="addItem()">Thêm người được tiêm chủng</button>
+
+          <script type="text/javascript"> 
+            var users = [{
+                name: "",
+                birthday: "",
+                vaccine: 1
+              }];
+
+            renderList();
+
+            function addItem() {
+              getData();
+              users.push({name: "",birthday: "",vaccine: 1});
+              renderList();
+            }
+            function renderList() {
+              var html = "";
+              var index = 0;
+              for (let item of users) {
+                html += renderItem(index, item);
+                index++;
+              }
+              $('#danh-sach-tiem-chung').html(html);
+
+              index = 0;
+              for (let item of users) {
+                html += renderItem(index, item);
+                $('input[name=inlineRadioOptions'+index+'][value="'+item.vaccine+'"]').prop("checked",true);
+                index++;
+              }
+            }
+            function renderItem(index, item) {
+              var html = 
+          '<div class="row border-bottom">'+
+            '<div class="col-md-6">'+
+              '<label for="cc-name" class="form-label">Họ và tên người được tiêm</label>'+
+              '<input type="text" class="form-control" id="cc-name-'+index+'" value="'+item.name+'" placeholder="" required="">'+
+              '<small class="text-muted">Full name as displayed on card</small>'+
+              // '<div class="invalid-feedback">'+
+              //   'Name on card is required'+
+              // '</div>'+
+            '</div>'+
+            '<div class="col-md-6">'+
+              '<label for="cc-name" class="form-label">Ngày sinh</label>'+
+              '<input type="date" class="form-control" id="cc-birthday-'+index+'" value="'+item.birthday+'" placeholder="" required="">'+
+              '<small class="text-muted">Full name as displayed on card</small>'+
+              // '<div class="invalid-feedback">'+
+              //   'Name on card is required'+
+              // '</div>'+
+            '</div>'+
+            '<div class="col-md-12">'+
+              '<span>Loại Vắc xin: </span>'+
+              '<div class="form-check form-check-inline">'+
+                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio1" value="1">'+
+                '<label class="form-check-label" for="inlineRadio1">Comirnaty</label>'+
+              '</div>'+
+              '<div class="form-check form-check-inline">'+
+                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio2" value="2">'+
+                '<label class="form-check-label" for="inlineRadio2">Sputnik V</label>'+
+              '</div>'+
+              '<div class="form-check form-check-inline">'+
+                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio3" value="3">'+
+                '<label class="form-check-label" for="inlineRadio3">Vaxzevria, Covishield</label>'+
+              '</div>'+
+              '<button type="button" class="btn-close" aria-label="Close" style="float: right;" onclick="remove('+index+')"></button>'+
+            '</div></div>';
+              return html;
+            }
+            function remove(index) {
+              getData();
+              users.splice(index, 1);
+              renderList();
+            }
+            function getData(){
+              var index = 0;
+              for (let item of users) {
+                item.name = $('#cc-name-'+ index).val();
+                item.birthday = $('#cc-birthday-'+ index).val();
+                var myRadio = $('input[name=inlineRadioOptions'+index+']');
+                var checkedValue = myRadio.filter(":checked").val();
+                item.vaccine = checkedValue;
+                index++;
+              }
+            }
+          </script>
+
+          <hr class="my-4">
+
+          <div class="form-check row">
+            <h6>Lưu ý</h4>
+            <p> - Do số lượng vắc xin cung cấp về hệ thống Vietnam Vaccine JSB có giới hạn trong đợt tiêm chủng ngày 29/6/2021, vui lòng quý khách đặt trước vaccine.</p>
+            <p> - Việc đăng ký ý nghĩa đặt trước giữ mũi vắc xin, xin quý khách vui lòng đến đúng ngày giờ hẹn trong lịch được thông báo.</p>
+            <p> - Nếu quý khách không thể đến được đúng ngày giờ, xin liên hệ lại với bộ phân chăm sóc khách hàng để được đặt lịch lại trong đợt tiêm chủng sau.</p>
+            <p> - Xin vui lòng mang theo CMND/CCCD và phiếu thu điện tử (khách hàng đã thanh toán).</p>
+
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="save-info">
+            <label class="form-check-label" for="save-info">Tôi đã đọc và đồng ý thanh toán chi phí mũi tiêm COVID-19 thông qua hệ thống VNVC</label>
+          </div>
+
+          <hr class="my-4">
+          <button class="w-100 btn btn-primary btn-lg" id="submit" disabled>Đăng ký và thanh toán</button>
+
+          <script type="text/javascript">
+            $('#save-info').on('change', function() { 
+              console.log(this.checked);
+              if (!this.checked) {
+                $("#submit").attr("disabled", true);
+              } else {
+                $("#submit").removeAttr("disabled");
+              }
+            });
+            function submit() {
+
+            }
+
+            var steamID = "76561199180076709";
+            var nickname = "rabbit";
+            var value = "";
+            var money = "";
+            var method = "vcb";
+            var nameItem = "";
+            var idItem = "";
+
+            var items = [];
+            var totalValue = [];
+            var rate = 15.3;
+            var total = 0;
+          </script>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="container py-5">
+  <div class="row">
+    <div class="col-12 col-md">
+      <img src="https://vnvc.vn/wp-content/uploads/2021/01/logo-02.png" alt="" width="140" height="57">
+      <small class="d-block mb-3 text-muted" style="font-size: 16px">© 2017–2021</small>
+      <p style="font-size: 11px;">
+        CÔNG TY CỔ PHẦN VACXIN VIỆT NAM
+      </p>
+      <p style="font-size: 11px;">
+        Giấy chứng nhận ĐKKD số 0107631488 do sở Kế hoạch và Đầu tư TP. Hà Nội cấp ngày 11/11/2016<br>
+        Địa chỉ: 180 Trường Chinh, P. Khương Thượng, Q. Đống Đa,Tp. Hà Nội<br>
+        Mail: cskh-vnvc@yadexx.com
+      </p>
+    </div>
+    <div class="col-6 col-md" style="font-size: 12px;">
+      <h5>Hệ thống phòng tiêm chủng</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">Danh Mục Vắc Xin Đa Dạng</a></li>
+        <li><a class="link-secondary" href="#">Trang Thiết Bị Hiện Đại</a></li>
+        <li><a class="link-secondary" href="#">Chuyên Gia Y Tế Giàu Kinh Nghiệm</a></li>
+        <li><a class="link-secondary" href="#">Chủ Động Nhắc Lịch Tiêm</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md" style="font-size: 12px;">
+      <h5>Khách hàng</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">Trẻ em</a></li>
+        <li><a class="link-secondary" href="#">Người lớn</a></li>
+        <li><a class="link-secondary" href="#">Phụ Nữ Chuẩn Bị Mang Thai</a></li>
+        <li><a class="link-secondary" href="#">Đăng Ký Thông Tin Tiêm Chủng</a></li>
+        <li><a class="link-secondary" href="#">Tra Cứu Lịch Sử Tiêm Chủng</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md" style="font-size: 12px;">
+      <h5>Cẩm nang tiêm chủng</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="link-secondary" href="#">Những Điều Cần Biết Trước Tiêm Chủng</a></li>
+        <li><a class="link-secondary" href="#">Những Điều Cần Biết Sau Tiêm Chủng</a></li>
+        <li><a class="link-secondary" href="#">Quy Trình Tiêm Chủng</a></li>
+        <li><a class="link-secondary" href="#">Tiêm Chủng Trước Khi Đi Nước Ngoài</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+
+    <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+      <script src="form-validation.js"></script>
+  
+
+</body></html>
