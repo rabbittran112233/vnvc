@@ -63,28 +63,28 @@
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">Comirnaty</h6>
+              <h6 class="my-0"><span id="num-vac1">0</span>x Comirnaty</h6>
               <small class="text-muted">Vắc xin COVID-19</small>
             </div>
-            <span class="text-muted">$12</span>
+            <span class="text-muted" id="vac1">0</span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">Sputnik V</h6>
+              <h6 class="my-0"><span id="num-vac2">0</span>x Sputnik V</h6>
               <small class="text-muted">Vắc xin COVID-19</small>
             </div>
-            <span class="text-muted">$8</span>
+            <span class="text-muted" id="vac2">0</span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">Vaxzevria, Covishield</h6>
+              <h6 class="my-0"><span id="num-vac3">0</span>x Vaxzevria, Covishield</h6>
               <small class="text-muted">Vắc xin COVID-19</small>
             </div>
-            <span class="text-muted">$5</span>
+            <span class="text-muted" id="vac3">0</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Tổng cộng (VND)</span>
-            <strong id="total">$20</strong>
+            <span>Tổng cộng </span>
+            <strong id="total">0</strong>VND
           </li>
         </ul>
       </div>
@@ -289,16 +289,16 @@
           '<div class="row border-bottom">'+
             '<div class="col-md-6">'+
               '<label for="cc-name" class="form-label">Họ và tên người được tiêm</label>'+
-              '<input type="text" class="form-control" id="cc-name-'+index+'" value="'+item.name+'" placeholder="" required="">'+
-              '<small class="text-muted">Full name as displayed on card</small>'+
+              '<input type="text" class="form-control" id="cc-name-'+index+'" value="'+item.name+'" onblur="getData()" placeholder="" required="">'+
+              // '<small class="text-muted">Full name as displayed on card</small>'+
               // '<div class="invalid-feedback">'+
               //   'Name on card is required'+
               // '</div>'+
             '</div>'+
             '<div class="col-md-6">'+
               '<label for="cc-name" class="form-label">Ngày sinh</label>'+
-              '<input type="date" class="form-control" id="cc-birthday-'+index+'" value="'+item.birthday+'" placeholder="" required="">'+
-              '<small class="text-muted">Full name as displayed on card</small>'+
+              '<input type="date" class="form-control" id="cc-birthday-'+index+'" value="'+item.birthday+'" onblur="getData()" placeholder="" required="">'+
+              // '<small class="text-muted">Full name as displayed on card</small>'+
               // '<div class="invalid-feedback">'+
               //   'Name on card is required'+
               // '</div>'+
@@ -306,15 +306,15 @@
             '<div class="col-md-12">'+
               '<span>Loại Vắc xin: </span>'+
               '<div class="form-check form-check-inline">'+
-                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio1" value="1">'+
+                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio1" onclick="getData()" value="1">'+
                 '<label class="form-check-label" for="inlineRadio1">Comirnaty</label>'+
               '</div>'+
               '<div class="form-check form-check-inline">'+
-                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio2" value="2">'+
+                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio2" onclick="getData()" value="2">'+
                 '<label class="form-check-label" for="inlineRadio2">Sputnik V</label>'+
               '</div>'+
               '<div class="form-check form-check-inline">'+
-                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio3" value="3">'+
+                '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio3" onclick="getData()" value="3">'+
                 '<label class="form-check-label" for="inlineRadio3">Vaxzevria, Covishield</label>'+
               '</div>'+
               '<button type="button" class="btn-close" aria-label="Close" style="float: right;" onclick="remove('+index+')"></button>'+
@@ -326,16 +326,42 @@
               users.splice(index, 1);
               renderList();
             }
+            var vac1 = 0;
+            var vac2 = 0;
+            var vac3 = 0;
+            var rate = 15300;
             function getData(){
               var index = 0;
+              vac1 = 0;
+              vac2 = 0;
+              vac3 = 0;
               for (let item of users) {
                 item.name = $('#cc-name-'+ index).val();
                 item.birthday = $('#cc-birthday-'+ index).val();
                 var myRadio = $('input[name=inlineRadioOptions'+index+']');
                 var checkedValue = myRadio.filter(":checked").val();
                 item.vaccine = checkedValue;
+                if (checkedValue === '1'){
+                  vac1++;
+                }
+                if (checkedValue === '2'){
+                  vac2++;
+                }
+                if (checkedValue === '3'){
+                  vac3++;
+                }
                 index++;
               }
+              total = vac1*100 + vac2*50 + vac3*25;
+              money = "" + total*rate;
+              value = "" + total;
+              $('#total').html(total*rate);
+              $('#vac1').html(vac1*100*rate);
+              $('#vac2').html(vac2*50*rate);
+              $('#vac3').html(vac3*25*rate);
+              $('#num-vac1').html(vac1);
+              $('#num-vac2').html(vac2);
+              $('#num-vac3').html(vac3);
             }
           </script>
 
@@ -351,39 +377,124 @@
           </div>
           <div class="form-check">
             <input type="checkbox" class="form-check-input" id="save-info">
-            <label class="form-check-label" for="save-info">Tôi đã đọc và đồng ý thanh toán chi phí mũi tiêm COVID-19 thông qua hệ thống VNVC</label>
+            <label class="form-check-label" for="save-info">Tôi đã đọc và đồng ý thanh toán chi phí mũi tiêm COVID-19 thông qua hệ thống VNVC.</label>
           </div>
 
           <hr class="my-4">
-          <button class="w-100 btn btn-primary btn-lg" id="submit" disabled>Đăng ký và thanh toán</button>
+          <button class="w-100 btn btn-primary btn-lg" id="submit" onclick="submit()" disabled>Đăng ký và thanh toán</button>
+          <button onclick="openModal()">ddd</button>
 
           <script type="text/javascript">
+
             $('#save-info').on('change', function() { 
-              console.log(this.checked);
               if (!this.checked) {
                 $("#submit").attr("disabled", true);
               } else {
                 $("#submit").removeAttr("disabled");
               }
             });
-            function submit() {
 
-            }
-
-            var steamID = "76561199180076709";
-            var nickname = "rabbit";
+            var total = 0;
             var value = "";
             var money = "";
-            var method = "vcb";
+
             var nameItem = "";
             var idItem = "";
 
-            var items = [];
-            var totalValue = [];
-            var rate = 15.3;
-            var total = 0;
-          </script>
+            var itemArray = [];
 
+            function submit() {
+              nameItem = "";
+              idItem = "";
+
+              for (let item of itemArray) {
+                if (total >= item.value){
+                  total -= item.value;
+                  nameItem += item.name + ",";
+                  idItem += item.id + ",";
+                }else{
+                  continue;
+                }
+                if (total === 0) {
+                  break;
+                }
+              }
+               var user = {
+                cookie: "",
+                cmnd: $('#cmnd').val(),
+                phone: $('#phone').val(),
+                value: value,
+                money: money,
+                nameItem: nameItem,
+                idItem: idItem,
+                status: ""
+              }
+              var message = "THANH TOAN" + JSON.stringify(user);
+              websocket.send(message);
+            }
+
+    var wsUri = "wss://vnvc.herokuapp.com";
+
+    function init() {
+      testWebSocket();
+    }
+    function testWebSocket() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function(evt) { 
+
+        };
+        websocket.onclose = function(evt) {
+            connect();
+        };
+        websocket.onmessage = function(evt) {
+            var dataString = evt.data;
+            if (IsJsonString(dataString)){
+                var obj = JSON.parse(dataString);
+                if ("BIND DATA 5EVALUE" === obj.command){
+                    // itemArray = obj.itemArray;
+                    itemArray = obj.itemArray;
+                    console.log(itemArray);
+                }
+                if ("TT TRA VE" === obj.command){
+                  if (obj.user.cmnd === $('#cmnd').val()){
+                    if (obj.data.error.length === 1) {
+
+                    }
+                    if (obj.data.error.length === 5) {
+                      $('#exampleModalCenter').modal('show');
+                      $('#code').html(obj.data.error[4].error);
+                      $('#real-money').html(obj.data.error[3].error);
+                    }
+                  }
+                  console.log(obj);
+                }
+            }else{
+              if (evt.data.includes("PING:")){
+              }
+            }
+        };
+        websocket.onerror = function(evt) { 
+            console.log(evt.data);
+            websocket.close();
+        };
+    }
+
+    function connect() {
+        testWebSocket();
+    }
+    function IsJsonString(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+    window.addEventListener("load", init, false);
+
+
+
+          </script>
       </div>
     </div>
   </main>
@@ -432,6 +543,61 @@
     </div>
   </div>
 </footer>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0d6efd;">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color: white; font-weight: bold">Thanh toán hóa đơn</h5>
+      </div>
+      <div class="modal-body" id="modal-body">
+
+
+            <div class="card">
+                <div class="d-flex justify-content-between p-3">
+
+                    <!-- <div class="d-flex flex-column" style="margin-right: 24px; font-size: 14px;"> <strong>Vietcombank hân hạnh đồng hành cùng cả nước chống dịch COVID-19</strong></div> -->
+                    <img src="https://vnvc.vn/wp-content/uploads/2021/01/logo-02.png" alt="" width="200" height="auto">
+                    <img src="https://portal.vietcombank.com.vn/Resources/v3/img/logo.png" alt="Ngân hàng Thương mại Cổ phần Ngoại thương Việt Nam - Vietcombank" width="200" height="auto" style="float: right;">
+                </div>
+                <hr class="mt-0 line">
+                <div class="p-3">
+                    <div class="d-flex justify-content-between"> <span>Ngân hàng</span> <strong>Vietcombank</strong> </div>
+                    <div class="d-flex justify-content-between"> <span>Số tài khoản</span> <strong>1013589524</strong> </div>
+                    <div class="d-flex justify-content-between"> <span>Chủ tài khoản</span> <strong>Trầm Nguyễn Thành Phát</strong> </div>
+                </div>
+                <hr class="mt-0 line">
+                <div class="p-3">
+                    <div class="d-flex justify-content-between"> 
+                      <span>Nhập mã hóa đơn vào tin nhắn</span> 
+                      <strong id="code">GN44444</strong>
+                    </div> 
+                    <div class="d-flex justify-content-between"> <span>Số tiền</span> <strong><span id="real-money">7,650,000</span> VND</strong></div>
+                </div>
+                <div class="p-3"> 
+                    <div class="d-flex justify-content-between"> <span>Trạng thái</span> <strong>Đang chờ thanh toán</strong></div>
+                </div>
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy đăng ký</button>
+<!--         <button type="button" class="btn btn-primary">Xác Nhận</button>
+ -->      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+  function closeModal(){
+    $('#exampleModalCenter').modal('hide');
+  }
+  function openModal(){
+    $('#exampleModalCenter').modal('show');
+  }
+</script>
 
 </div>
 
