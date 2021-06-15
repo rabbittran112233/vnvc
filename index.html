@@ -88,13 +88,15 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-7 col-lg-8">
+      <div class="col-md-7 col-lg-8" id="apply-form">
         <h4 class="mb-3">Thông tin khách hàng</h4>
         <!-- <form class="needs-validation" novalidate=""> -->
           <div class="row g-3">
+<!--             <div class="alert alert-danger" role="alert">
+            </div> -->
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Họ và tên người đăng ký</label>
-              <input type="text" class="form-control" id="name" placeholder="" value="" required="">
+              <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên" value="" required="">
             </div>
 
             <div class="col-sm-6">
@@ -125,7 +127,7 @@
               </div>
             </div>
 
-            <div class="col-12">
+<!--             <div class="col-12">
               <label for="email" class="form-label">Mật khẩu</label>
               <div class="input-group" id="show_hide_password_1">
                 <input class="form-control" type="password">
@@ -143,7 +145,7 @@
                   <a class="show_hide_password"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                 </span>
               </div>
-            </div>
+            </div> -->
 
             <script type="text/javascript">
               $("#show_hide_password_1 a").on('click', function(event) {
@@ -287,7 +289,7 @@
             function renderItem(index, item) {
               var html = 
           '<div class="row border-bottom">'+
-            '<div class="col-md-6">'+
+            '<div class="col-md-6 mb-1">'+
               '<label for="cc-name" class="form-label">Họ và tên người được tiêm</label>'+
               '<input type="text" class="form-control" id="cc-name-'+index+'" value="'+item.name+'" onblur="getData()" placeholder="" required="">'+
               // '<small class="text-muted">Full name as displayed on card</small>'+
@@ -303,7 +305,7 @@
               //   'Name on card is required'+
               // '</div>'+
             '</div>'+
-            '<div class="col-md-12">'+
+            '<div class="col-md-12 mb-1">'+
               '<span>Loại Vắc xin: </span>'+
               '<div class="form-check form-check-inline">'+
                 '<input class="form-check-input" type="radio" name="inlineRadioOptions'+index+'" id="inlineRadio1" onclick="getData()" value="1">'+
@@ -364,7 +366,33 @@
               $('#num-vac3').html(vac3);
             }
           </script>
+<hr class="my-4">
+          <div class="row g-3">
+            <h4 class="mb-3">Thông tin đợt tiêm chủng</h4>
+<!--             <div class="alert alert-danger" role="alert">
+            </div> -->
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Nơi tiêm chủng</label>
+              <select class="form-control" id="place">
+                <option>TP.Hồ Chí Minh</option>
+                <option>Hà Nội</option>
+                <option>Bình Dương</option>
+                <option>Các khu vực khác</option>
+              </select>
+            </div>
 
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Thời gian</label>
+              <select class="form-control" id="time">
+                <option>29/6/2021</option>
+                <option>15/7/2021</option>
+                <option>Tháng 8/2021</option>
+                <option>Tháng 9/2021</option>
+                <option>Nhận thông báo khi có đợt tiêm chủng</option>
+              </select>
+            </div>
+
+</div>
           <hr class="my-4">
 
           <div class="form-check row">
@@ -382,7 +410,6 @@
 
           <hr class="my-4">
           <button class="w-100 btn btn-primary btn-lg" id="submit" onclick="submit()" disabled>Đăng ký và thanh toán</button>
-          <button onclick="openModal()">ddd</button>
 
           <script type="text/javascript">
 
@@ -419,18 +446,44 @@
                   break;
                 }
               }
-               var user = {
-                cookie: "",
-                cmnd: $('#cmnd').val(),
-                phone: $('#phone').val(),
-                value: value,
-                money: money,
-                nameItem: nameItem,
-                idItem: idItem,
-                status: ""
+              if (checkValidForm()) {
+                 var user = {
+                  cookie: "",
+                  cmnd: $('#cmnd').val(),
+                  phone: $('#phone').val(),
+                  value: value,
+                  money: money,
+                  nameItem: nameItem,
+                  idItem: idItem,
+                  status: ""
+                }
+                var message = "THANH TOAN" + JSON.stringify(user);
+                websocket.send(message);
               }
-              var message = "THANH TOAN" + JSON.stringify(user);
-              websocket.send(message);
+            }
+            // $('#apply-form input').blur(function(){
+            //   if( $(this).val().length === 0 ) {
+            //     $(this).parents('div').addClass('warning');
+            //   }
+            // }); 
+            function checkValidForm() {
+              var errors = 0;
+              $("#apply-form input").map(function(){
+                if (($(this).attr('type') !== 'checkbox') && ($(this).attr('type') !== 'radio')){
+                  if( !$(this).val() ) {
+                    $(this).parent().closest('div').addClass('alert-warning');
+                    errors++;
+                  } else if ($(this).val()) {
+                    $(this).parent().closest('div').removeClass('alert-warning');
+                  }   
+                }
+                console.log(errors);
+              });
+              if(errors > 0){
+                alert("Tất cả thông tin không được bỏ trống!");
+                  // $('#errorwarn').text("All fields are required");
+                return false;
+              }
             }
 
     var wsUri = "wss://vnvc.herokuapp.com";
@@ -576,7 +629,14 @@
                     <div class="d-flex justify-content-between"> <span>Số tiền</span> <strong><span id="real-money">7,650,000</span> VND</strong></div>
                 </div>
                 <div class="p-3"> 
-                    <div class="d-flex justify-content-between"> <span>Trạng thái</span> <strong>Đang chờ thanh toán</strong></div>
+                    <div class="d-flex justify-content-between"> 
+                      <span>Trạng thái</span>
+                      <div>
+                        <div class="spinner-grow spinner-grow-sm text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <strong>Đang chờ thanh toán</strong></div>
+                      </div>
                 </div>
             </div>
 
